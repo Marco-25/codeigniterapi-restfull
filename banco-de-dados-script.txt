@@ -1,0 +1,44 @@
+create database if not exists code_api_rest character set utf8 collate utf8_general_ci;
+
+CREATE TABLE if not exists `clientes` (
+  `id` int(11) NOT NULL primary key auto_increment,
+  `nome` varchar(50) DEFAULT NULL,
+  `cpf` varchar(14) DEFAULT NULL,
+  `cidade` varchar(20) DEFAULT NULL,
+  `endereco` varchar(100) DEFAULT NULL,
+  `numero` varchar(6) DEFAULT NULL,
+  `bairro` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `clientes` (`id`, `nome`, `cpf`, `cidade`, `endereco`, `numero`, `bairro`) VALUES
+(1, 'Marco', '123.456.789-72', 'vera', 'uma rua', 'um num', 'um bairro');
+
+
+CREATE TABLE if not exists `rastreador` (
+  `id` int(11) NOT NULL primary key auto_increment,
+  `marca` varchar(20) DEFAULT NULL,
+  `numero` varchar(10) DEFAULT NULL,
+  `veiculo_id` int(11) DEFAULT NULL,
+  `cliente_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE if not exists `usuarios` (
+  `id` int(11) NOT NULL primary key auto_increment,
+  `email` varchar(100) DEFAULT NULL,
+  `pass` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `usuarios` (`id`, `email`, `pass`) VALUES
+(1, 'email@email', 'senha');
+
+CREATE TABLE if not exists `veiculos` (
+  `id` int(11) NOT NULL primary key auto_increment,
+  `nome` varchar(50) DEFAULT NULL,
+  `placa` varchar(10) DEFAULT NULL,
+  `cor` varchar(15) DEFAULT NULL,
+  `ano` varchar(4) DEFAULT NULL,
+  `modelo` varchar(4) DEFAULT NULL,
+  `cliente_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

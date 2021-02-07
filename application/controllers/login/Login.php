@@ -41,12 +41,6 @@ class Login extends CI_Controller
 
 	}
 
-	public function validateToken($token)
-	{
-		$decoded = JWT::decode($token, $this->key, array('HS256'));
-		return JWT::encode($decoded,$this->key);
-	}
-
 	public function setResponse($code, $data)
 	{
 		$this->output

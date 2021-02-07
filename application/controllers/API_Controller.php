@@ -13,22 +13,22 @@ abstract class API_Controller extends Login
 			 if ($auth === ''){
 				 $this->setResponse(401,[
 					 "mensagem" => "Faça login",
-					 "link" => "localhost:8080/login/login"
+					 "link" => "localhost:8080/login/login",
+					 'email' => 'seu email',
+					 'pass' => 'sua senha'
 				 ]);
-				 return;
+			 } else {
+				 if($this->getMethodHTTP() === 'get') return $this->show();
+				 if($this->getMethodHTTP() === 'post') return $this->store();
+				 if($this->getMethodHTTP() === 'put') return $this->update();
+				 if($this->getMethodHTTP() === 'delete') return $this->destroy();
+				 if($this->getMethodHTTP() !== ['delete','get','post','put']) {
+					 $this->setResponse(401,["mensagem" => "Metodo HTTP não suportado"]);
+				 }
 			 }
-
-			if($this->getMethodHTTP() === 'get') return $this->show();
-			if($this->getMethodHTTP() === 'post') return $this->store();
-			if($this->getMethodHTTP() === 'put') return $this->update();
-			if($this->getMethodHTTP() === 'delete') return $this->destroy();
-			if($this->getMethodHTTP() !== ['delete','get','post','put']) {
-				$this->setResponse(401,["mensagem" => "Metodo HTTP não suportado"]);
-			}
-
-
+			 
 		 } catch (\Exception $erro) {
-		 	echo "Erro";
+		 	echo "Erro!Token inválido.";
 		 }
 	}
 

@@ -47,3 +47,4 @@ $db['online'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
